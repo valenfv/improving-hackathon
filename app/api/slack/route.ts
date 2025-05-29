@@ -21,6 +21,13 @@ type Message = {
 // Store conversation history
 const conversationHistory = new Map<string, Message[]>();
 
+// Add event deduplication cache
+const processedEvents = new Set<string>();
+
+// Helper function to generate a unique event ID
+function getEventId(event: any): string {
+  return `${event.channel}_${event.ts}_${event.user}`;
+}
 
 async function getThreadMessages(channelId: string, threadTs: string) {
   try {
@@ -46,7 +53,6 @@ export async function POST(req: Request) {
     return new Response(body.challenge, { status: 200 });
   }
 
-
   const payload = body;
   const { type, event } = payload;
 
@@ -57,6 +63,21 @@ export async function POST(req: Request) {
     // Skip if the message is from a bot or is a bot message
     if (event.subtype === 'bot_message' || event.bot_id) {
       return new Response('Ignoring bot message', { status: 200 });
+    }
+
+    // Check if we've already processed this event
+    const eventId = getEventId(event);
+    if (processedEvents.has(eventId)) {
+      return new Response('Event already processed', { status: 200 });
+    }
+
+    // Add event to processed set
+    processedEvents.add(eventId);
+
+    // Clean up old events (keep last 1000 events)
+    if (processedEvents.size > 1000) {
+      const oldestEvents = Array.from(processedEvents).slice(0, processedEvents.size - 1000);
+      oldestEvents.forEach(event => processedEvents.delete(event));
     }
 
     if(event.text && !event.text.includes(mentionString)){

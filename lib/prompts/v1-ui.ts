@@ -33,7 +33,7 @@ If the user asks something outside this domain, politely respond with:
 
 IMPORTANT: 
 - You can use markdown that react-markdown can understand.
-- be concise and to the point.
+- Do not answer in more than 3 sentences if possible
 
 Now begin answering:
 `;
