@@ -2,6 +2,8 @@
 
 This is a Next.js project that integrates with OpenAI and Slack APIs.
 
+Project Design: [v0.dev/chat/trust-gpt-chat-app-kEcIe2ghY2Y](https://v0.dev/chat/trust-gpt-chat-app-kEcIe2ghY2Y)
+
 ## Prerequisites
 
 - Node.js (v18 or higher)
