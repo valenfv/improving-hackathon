@@ -5,7 +5,7 @@ import OpenAI from 'openai';
 
 const slackToken = process.env.SLACK_BOT_TOKEN;
 const web = new WebClient(slackToken);
-import promptV1 from '@/lib/prompts/v1';
+import promptV1 from '@/lib/prompts/v1-slack';
 
 // Initialize OpenAI client
 const openai = new OpenAI({
@@ -20,12 +20,7 @@ type Message = {
 
 // Store conversation history
 const conversationHistory = new Map<string, Message[]>();
-const emojis = ['hot_face', 'eggplant', 'sweat_drops'];
 
-function getRandomEmojis(count: number = Math.floor(Math.random() * 3) + 1) {
-  const shuffled = [...emojis].sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
-}
 
 async function getThreadMessages(channelId: string, threadTs: string) {
   try {
