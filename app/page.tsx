@@ -124,7 +124,7 @@ export default function TrustGPTChat() {
 
           <CardContent className="p-0">
             {/* Messages Area - Decreased height */}
-            <div className="h-[500px] overflow-y-auto p-4 space-y-4">
+            <div className="h-[400px] overflow-y-auto p-4 space-y-4">
               {messages.length === 0 && (
                 <div className="text-center py-8">
                   <div className="w-12 h-12 bg-[#00A4E4]/10 rounded-full flex items-center justify-center mx-auto mb-3">
@@ -314,6 +314,23 @@ export default function TrustGPTChat() {
           </CardContent>
         </Card>
       </div>
+      {/* Footer */}
+      <footer className="border-t border-gray-100 mt-2 py-3">
+        <div className="container mx-auto max-w-4xl px-4">
+          <div className="flex flex-col items-center justify-center text-center">
+            <p className="text-sm text-gray-600 mb-2">
+              Created with ❤️ during Improving's Come Together in Buenos Aires
+            </p>
+            <div className="flex items-center gap-4 text-sm text-[#005596]">
+              <span>Sergio Fermanelli</span>
+              <span>•</span>
+              <span>Santiago Almiron</span>
+              <span>•</span>
+              <span>Valentin Fernandez</span>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
