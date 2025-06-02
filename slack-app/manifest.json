@@ -1,0 +1,36 @@
+{
+    "display_information": {
+        "name": "TrustGPT"
+    },
+    "features": {
+        "bot_user": {
+            "display_name": "TrustGPT",
+            "always_online": false
+        }
+    },
+    "oauth_config": {
+        "scopes": {
+            "bot": [
+                "app_mentions:read",
+                "channels:history",
+                "chat:write",
+                "commands",
+                "im:history",
+                "reactions:write"
+            ]
+        }
+    },
+    "settings": {
+        "event_subscriptions": {
+            "request_url": "https://improving-hackathon.vercel.app/api/slack",
+            "bot_events": [
+                "app_mention",
+                "message.channels",
+                "message.im"
+            ]
+        },
+        "org_deploy_enabled": false,
+        "socket_mode_enabled": false,
+        "token_rotation_enabled": false
+    }
+}
